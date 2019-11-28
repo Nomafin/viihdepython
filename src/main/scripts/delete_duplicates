@@ -41,7 +41,7 @@ def main():
     
     if answer == 'y':
         for key, recordings in found_duplicates.items():
-            print('Processing:', key[0], ';', key[1])
+            print('Processing:', key[0].encode('cp1252'), ';', key[1].encode('cp1252'))
             first = True
             for recording in recordings:
                 if first:
@@ -74,9 +74,9 @@ def find_duplicates(recordings):
         if len(recordings) > 1:
             recordings.sort(key=lambda r: (not r['channel'].endswith('HD'), r['startTimeUTC']))
             duplicate_recordings_dict[key] = recordings
-            print('Found duplicates for:', key[0], ';', key[1])
+            print('Found duplicates for:', key[0].encode('cp1252'), ';', key[1].encode('cp1252'))
             for recording in recordings:
-                print('*', recording['startTime'], recording['channel'])
+                print('*', recording['startTime'], recording['channel'].encode('cp1252'))
     print('Total', len(duplicate_recordings_dict))
     return duplicate_recordings_dict
 
